@@ -113,3 +113,26 @@ export function createServer() {
 
   return server;
 }
+
+/**
+ * 获取服务器信息
+ */
+export function getServerInfo() {
+  return {
+    name: "mcp-markdownify-server",
+    version: "0.0.1",
+    capabilities: {
+      tools: ["markdownify_convert", "markdownify_batch_convert"],
+      transports: ["stdio", "http", "sse"]
+    }
+  };
+}
+
+/**
+ * 验证HTML输入
+ */
+export function validateHtmlInput(html: string): boolean {
+  if (typeof html !== 'string') return false;
+  if (html.length > 10 * 1024 * 1024) return false; // 10MB限制
+  return true;
+}
